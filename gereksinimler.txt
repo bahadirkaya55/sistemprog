@@ -1,0 +1,56 @@
+# Distributed Disk Register - Gereksinimler
+# ==========================================
+
+## Sistem Gereksinimleri
+- Java JDK 17 veya üzeri (pom.xml'de tanımlı)
+- Apache Maven 3.6 veya üzeri
+
+## Maven Bağımlılıkları (pom.xml'den):
+- io.grpc:grpc-netty-shaded:1.63.0
+- io.grpc:grpc-protobuf:1.63.0
+- io.grpc:grpc-stub:1.63.0
+- com.google.protobuf:protobuf-java:3.25.3
+
+## Maven Eklentileri:
+- maven-compiler-plugin:3.13.0
+- protobuf-maven-plugin:0.6.1
+- os-maven-plugin:1.7.1
+
+## Kurulum Adımları:
+
+### 1. Java 17 Kurulumu (Windows):
+```
+winget install Oracle.JDK.17
+```
+veya
+```
+winget install Microsoft.OpenJDK.17
+```
+
+### 2. Maven Kurulumu (Windows):
+```
+winget install Apache.Maven
+```
+
+### 3. Projeyi Derleme:
+```
+mvn clean compile
+```
+
+### 4. JAR Oluşturma:
+```
+mvn package
+```
+
+### 5. Çalıştırma:
+```
+# Lider node olarak:
+java -jar target/distributed-disk-register-0.0.1-SNAPSHOT.jar leader
+
+# Üye node olarak:
+java -jar target/distributed-disk-register-0.0.1-SNAPSHOT.jar member 7000
+```
+
+## Yapılandırma Dosyaları:
+- tolerance.conf - Hata tolerans ayarları
+- members.conf - Üye node listesi
