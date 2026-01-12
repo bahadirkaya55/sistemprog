@@ -1,33 +1,29 @@
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\DiskStorage.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\FamilyServiceImpl.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\HaToKuSeClient.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\HaToKuSeGUI.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\LeaderNode.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\LeaderReplicationServiceImpl.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\LeaderState.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\LeaderTextClientHandler.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\MemberClient.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\MemberConfig.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\MemberNode.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\MembersConfigLoader.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\NodeMain.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\NodeRegistry.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\ReplicationServiceImpl.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\ToleranceConfig.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\src\main\java\com\example\family\ToleranceConfigLoader.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\grpc-java\com\example\family\FamilyReplicationServiceGrpc.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\FamilyProto.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\FetchMessageRequest.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\FetchMessageRequestOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\FetchMessageResponse.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\FetchMessageResponseOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\RegisterNodeRequest.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\RegisterNodeRequestOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\RegisterNodeResponse.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\RegisterNodeResponseOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\ReplicateMessageRequest.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\ReplicateMessageRequestOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\ReplicateMessageResponse.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\ReplicateMessageResponseOrBuilder.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\StoredMessage.java
-C:\Users\yasimert\Desktop\sistemprog - Kopya\distributed-disk-register\target\generated-sources\protobuf\java\com\example\family\StoredMessageOrBuilder.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\storage\DiskStorage.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\gui\ManagementPanel.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\HeartbeatResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\MessageCountResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\gui\ClientGUI.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\HealthCheckRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\UnregisterRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\HealthCheckResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\ReplicateResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\client\HaToKuSeClient.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\member\MemberServer.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\HeartbeatRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\member\MemberServiceImpl.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\GetMessageResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\LeaderServiceGrpc.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\leader\LeaderServer.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\UnregisterResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\gui\LeaderDashboard.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\protocol\HaToKuSeProtocol.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\leader\LeaderServiceImpl.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\MessageCountRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\RegisterRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\config\ConfigReader.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\GetMessageRequest.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\MemberServiceGrpc.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\gui\InfoDialog.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\RegisterResponse.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\leader\MemberManager.java
+C:\Users\yasimert\Desktop\daðýtýkmesajkayýt\src\main\java\com\hatokuse\proto\ReplicateRequest.java
