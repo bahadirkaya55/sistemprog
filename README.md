@@ -167,3 +167,52 @@ ERROR <error_message>
 ## Lisans
 
 MIT
+
+
+
+Sistemi Çalıştırma
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📌 ADIM 1: Lider Sunucuyu Başlatın
+
+   Yeni bir terminal açın ve şu komutu çalıştırın:
+
+   java -cp target/hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar \
+        com.hatokuse.leader.LeaderServer
+
+   Lider, port 5000 (istemci) ve 5001 (gRPC) üzerinde çalışır.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📌 ADIM 2: Üye Sunucuları Başlatın
+
+   Her üye için ayrı terminal açın:
+
+   # Üye 1
+   java -cp target/hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar \
+        com.hatokuse.member.MemberServer --id member1 --port 5002
+
+   # Üye 2
+   java -cp target/hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar \
+        com.hatokuse.member.MemberServer --id member2 --port 5003
+
+   Her üye için farklı --id ve --port kullanın.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📌 ADIM 3: Bu GUI'yi Kullanın
+
+   1. 'Lider Sunucu' alanına: localhost:5000 yazın
+   2. 'Bağlan' butonuna tıklayın
+   3. Mesaj ID ve içerik girin
+   4. SET veya GET butonuna tıklayın
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📌 TOLERANS AYARLAMA
+
+   tolerance.conf dosyasında:
+   tolerance=2
+
+   Bu değer, sistemi başlatmadan önce ayarlanmalıdır.
