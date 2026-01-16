@@ -156,6 +156,18 @@ public class InfoDialog extends JDialog {
                         "   OK <mesaj>     → Mesaj bulundu\n" +
                         "   ERROR <sebep>  → Mesaj bulunamadı\n\n" +
                         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
+                        "📌 DEL KOMUTU\n\n" +
+                        "   Format: DEL <mesaj_id>\n\n" +
+                        "   Açıklama:\n" +
+                        "   - Mesajı tüm üyelerden siler\n" +
+                        "   - Silme işlemi geri alınamaz\n" +
+                        "   - Tümünü Sil ile toplu silme yapılabilir\n\n" +
+                        "   Örnek:\n" +
+                        "   DEL 100\n\n" +
+                        "   Yanıtlar:\n" +
+                        "   OK             → Silme başarılı\n" +
+                        "   ERROR <sebep>  → Silme başarısız\n\n" +
+                        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
                         "📌 GUI KULLANIMI\n\n" +
                         "   Bu GUI'de komutları manuel yazmanıza gerek yok.\n" +
                         "   Sadece 'Mesaj ID' ve 'Mesaj' alanlarını doldurun\n" +
@@ -301,7 +313,20 @@ public class InfoDialog extends JDialog {
                         "❓ Mesajlar nerede saklanıyor?\n\n" +
                         "   Her üye kendi mesajlarını şurada saklar:\n" +
                         "   ./data/members/<uye_id>/\n\n" +
-                        "   Her mesaj ayrı bir .msg dosyası olarak tutulur.\n");
+                        "   Her mesaj ayrı bir .msg dosyası olarak tutulur.\n\n" +
+                        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
+                        "❓ 'Address already in use' hatası alıyorum?\n\n" +
+                        "   Port zaten başka bir işlem tarafından kullanılıyor.\n" +
+                        "   Çözüm:\n" +
+                        "   1. netstat -ano | findstr :5001 ile PID bulun\n" +
+                        "   2. taskkill /PID <numara> /F ile sonlandırın\n" +
+                        "   3. Veya Görev Yöneticisi'nden Java işlemini kapatın\n\n" +
+                        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
+                        "❓ Mesaj nasıl silinir?\n\n" +
+                        "   DEL komutu ile mesaj silebilirsiniz:\n" +
+                        "   - 'DEL - Sil' butonu: Tek mesaj siler\n" +
+                        "   - 'Tümünü Sil' butonu: Tüm mesajları siler\n" +
+                        "   Silme işlemi geri alınamaz!\n");
 
         panel.add(new JScrollPane(textPane), BorderLayout.CENTER);
         return panel;

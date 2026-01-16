@@ -47,8 +47,8 @@ public class ClientGUI extends JFrame {
 
     private void initializeUI() {
         setTitle("HaToKuSe İstemci - Dağıtık Mesaj Kayıt Servisi");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(850, 650);
         setLocationRelativeTo(null);
         setBackground(BG_COLOR);
 
@@ -198,28 +198,53 @@ public class ClientGUI extends JFrame {
 
         sendPanel.add(formPanel, BorderLayout.CENTER);
 
-        // Butonlar
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        buttonPanel.setBackground(CARD_COLOR);
+        // Buton container - iki satır
+        JPanel buttonContainer = new JPanel();
+        buttonContainer.setLayout(new BoxLayout(buttonContainer, BoxLayout.Y_AXIS));
+        buttonContainer.setBackground(CARD_COLOR);
+
+        // İlk satır - Ana butonlar
+        JPanel buttonRow1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        buttonRow1.setBackground(CARD_COLOR);
 
         setButton = createStyledButton("SET - Kaydet", PRIMARY_COLOR);
         setButton.addActionListener(e -> executeSet());
         setButton.setEnabled(false);
-        buttonPanel.add(setButton);
+        buttonRow1.add(setButton);
 
         getButton = createStyledButton("GET - Getir", new Color(155, 89, 182));
         getButton.addActionListener(e -> executeGet());
         getButton.setEnabled(false);
-        buttonPanel.add(getButton);
+        buttonRow1.add(getButton);
 
         clearButton = createStyledButton("Temizle", new Color(149, 165, 166));
         clearButton.addActionListener(e -> {
             messageIdField.setText("");
             messageArea.setText("");
         });
-        buttonPanel.add(clearButton);
+        buttonRow1.add(clearButton);
 
-        sendPanel.add(buttonPanel, BorderLayout.SOUTH);
+        JButton browseButton = createStyledButton("Mesajları Göster", new Color(52, 73, 94));
+        browseButton.addActionListener(e -> showStoredMessages());
+        buttonRow1.add(browseButton);
+
+        buttonContainer.add(buttonRow1);
+
+        // İkinci satır - Silme butonları
+        JPanel buttonRow2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        buttonRow2.setBackground(CARD_COLOR);
+
+        JButton delButton = createStyledButton("DEL - Sil", ERROR_COLOR);
+        delButton.addActionListener(e -> executeDel());
+        buttonRow2.add(delButton);
+
+        JButton deleteAllButton = createStyledButton("Tümünü Sil", new Color(139, 0, 0));
+        deleteAllButton.addActionListener(e -> executeDeleteAll());
+        buttonRow2.add(deleteAllButton);
+
+        buttonContainer.add(buttonRow2);
+
+        sendPanel.add(buttonContainer, BorderLayout.SOUTH);
 
         panel.add(sendPanel, BorderLayout.CENTER);
 
@@ -241,10 +266,13 @@ public class ClientGUI extends JFrame {
                         "Mesajı ID'ye göre getirir.\n" +
                         "Crash durumunda diğer\n" +
                         "üyelerden alınır.\n\n" +
+                        "�️ DEL Komutu:\n" +
+                        "Mesajı tüm üyelerden siler.\n" +
+                        "Tümünü Sil ile toplu\n" +
+                        "silme yapılabilir.\n\n" +
                         "💡 İpucu:\n" +
-                        "Yardım → Kullanım Kılavuzu\n" +
-                        "menüsünden detaylı bilgi\n" +
-                        "alabilirsiniz.");
+                        "Mesajları Göster ile\n" +
+                        "kayıtlı mesajları görün.");
         helpPanel.add(helpText, BorderLayout.CENTER);
 
         panel.add(helpPanel, BorderLayout.EAST);
@@ -450,6 +478,125 @@ public class ClientGUI extends JFrame {
         }
     }
 
+    private void executeDel() {
+        String messageId = messageIdField.getText().trim();
+
+        if (messageId.isEmpty()) {
+            showError("Mesaj ID boş olamaz!");
+            return;
+        }
+
+        // Silme onayı iste
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "\"" + messageId + "\" mesajını silmek istediğinize emin misiniz?\n" +
+                        "Bu işlem geri alınamaz.",
+                "Silme Onayı", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (!connected) {
+            showError("Önce sunucuya bağlanın!");
+            return;
+        }
+
+        String command = HaToKuSeProtocol.createDelCommand(messageId);
+        log("→ " + command);
+
+        writer.println(command);
+
+        try {
+            String response = reader.readLine();
+            log("← " + response);
+
+            if (response != null && response.startsWith("OK")) {
+                messageIdField.setText("");
+                messageArea.setText("");
+                showSuccess("Mesaj başarıyla silindi!");
+            } else {
+                showError("Silme başarısız: " + response);
+            }
+        } catch (IOException e) {
+            showError("Okuma hatası: " + e.getMessage());
+            disconnect();
+        }
+    }
+
+    private void executeDeleteAll() {
+        // Tüm mesajları disk üzerinden oku
+        java.io.File membersDir = new java.io.File("./data/members");
+
+        if (!membersDir.exists() || !membersDir.isDirectory()) {
+            showError("Mesaj dizini bulunamadı!");
+            return;
+        }
+
+        // Benzersiz mesaj ID'lerini topla
+        java.util.Set<String> messageIds = new java.util.HashSet<>();
+        java.io.File[] memberDirs = membersDir.listFiles(java.io.File::isDirectory);
+        if (memberDirs != null) {
+            for (java.io.File memberDir : memberDirs) {
+                java.io.File[] msgFiles = memberDir.listFiles((dir, name) -> name.endsWith(".msg"));
+                if (msgFiles != null) {
+                    for (java.io.File msgFile : msgFiles) {
+                        messageIds.add(msgFile.getName().replace(".msg", ""));
+                    }
+                }
+            }
+        }
+
+        if (messageIds.isEmpty()) {
+            showError("Silinecek mesaj bulunamadı!");
+            return;
+        }
+
+        // Onay iste
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Toplam " + messageIds.size() + " benzersiz mesaj silinecek.\n" +
+                        "Bu işlem geri alınamaz!\n\n" +
+                        "Devam etmek istiyor musunuz?",
+                "Tümünü Sil Onayı", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (!connected) {
+            showError("Önce sunucuya bağlanın!");
+            return;
+        }
+
+        // Tüm mesajları sil
+        int successCount = 0;
+        int errorCount = 0;
+
+        for (String msgId : messageIds) {
+            String command = HaToKuSeProtocol.createDelCommand(msgId);
+            writer.println(command);
+
+            try {
+                String response = reader.readLine();
+                if (response != null && response.startsWith("OK")) {
+                    successCount++;
+                } else {
+                    errorCount++;
+                }
+            } catch (IOException e) {
+                errorCount++;
+            }
+        }
+
+        log("Tümünü sil tamamlandı: " + successCount + " başarılı, " + errorCount + " hatalı");
+
+        if (successCount > 0) {
+            showSuccess("Toplam " + successCount + " mesaj silindi!\n" +
+                    (errorCount > 0 ? errorCount + " mesaj silinemedi." : ""));
+        } else {
+            showError("Hiçbir mesaj silinemedi!");
+        }
+    }
+
     private void log(String message) {
         SwingUtilities.invokeLater(() -> {
             logArea.append("[" + java.time.LocalTime.now().toString().substring(0, 8) + "] " + message + "\n");
@@ -478,6 +625,83 @@ public class ClientGUI extends JFrame {
                 "© 2026";
 
         JOptionPane.showMessageDialog(this, about, "Hakkında", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void showStoredMessages() {
+        // Göreceli yol kullan - storage ile aynı
+        java.io.File membersDir = new java.io.File("./data/members");
+
+        if (!membersDir.exists() || !membersDir.isDirectory()) {
+            JOptionPane.showMessageDialog(this,
+                    "Mesaj dizini bulunamadı!\nHenüz mesaj kaydedilmemiş olabilir.",
+                    "Bilgi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        // Tüm mesajları topla
+        java.util.List<String[]> messages = new java.util.ArrayList<>();
+
+        java.io.File[] memberDirs = membersDir.listFiles(java.io.File::isDirectory);
+        if (memberDirs != null) {
+            for (java.io.File memberDir : memberDirs) {
+                // .msg dosyalarını doğrudan üye dizininde ara
+                java.io.File[] msgFiles = memberDir.listFiles((dir, name) -> name.endsWith(".msg"));
+                if (msgFiles != null) {
+                    for (java.io.File msgFile : msgFiles) {
+                        try {
+                            String msgId = msgFile.getName().replace(".msg", "");
+                            String content = new String(java.nio.file.Files.readAllBytes(msgFile.toPath()));
+                            // İlk 50 karakteri göster
+                            if (content.length() > 50) {
+                                content = content.substring(0, 50) + "...";
+                            }
+                            messages.add(new String[] { msgId, memberDir.getName(), content.trim() });
+                        } catch (Exception e) {
+                            // Okuma hatası, atla
+                        }
+                    }
+                }
+            }
+        }
+
+        if (messages.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Henüz kaydedilmiş mesaj yok!",
+                    "Bilgi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        // Tablo oluştur
+        String[] columns = { "Mesaj ID", "Üye", "İçerik" };
+        String[][] data = messages.toArray(new String[0][]);
+
+        JTable table = new JTable(data, columns);
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        table.setRowHeight(25);
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table.getColumnModel().getColumn(1).setPreferredWidth(80);
+        table.getColumnModel().getColumn(2).setPreferredWidth(300);
+
+        // Tablo seçildiğinde mesajı getir
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int row = table.getSelectedRow();
+                if (row >= 0) {
+                    messageIdField.setText((String) table.getValueAt(row, 0));
+                }
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(500, 300));
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.add(new JLabel("Toplam " + messages.size() + " mesaj bulundu (benzersiz değil, tüm kopyalar):"),
+                BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(new JLabel("Bir mesaj seçip GET ile içeriğini alabilirsiniz."), BorderLayout.SOUTH);
+
+        JOptionPane.showMessageDialog(this, panel, "Kayıtlı Mesajlar", JOptionPane.PLAIN_MESSAGE);
     }
 
     public static void main(String[] args) {
