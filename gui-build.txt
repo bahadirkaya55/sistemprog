@@ -1,0 +1,37 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.hatokuse:hatokuse >------------------------
+[INFO] Building HaToKuSe - Hata Tolere Kuyruk Servisi 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ hatokuse ---
+[INFO] Deleting C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ hatokuse ---
+[INFO] skip non existing resourceDirectory C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ hatokuse ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 28 source files with javac [debug target 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ hatokuse ---
+[INFO] skip non existing resourceDirectory C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ hatokuse ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ hatokuse ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ hatokuse ---
+[INFO] Building jar: C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\target\hatokuse-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- assembly:3.6.0:single (make-assembly) @ hatokuse ---
+[INFO] Building jar: C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\target\hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.390 s
+[INFO] Finished at: 2026-01-12T21:46:56+03:00
+[INFO] ------------------------------------------------------------------------
