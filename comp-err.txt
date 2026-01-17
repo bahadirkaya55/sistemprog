@@ -1,0 +1,40 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.hatokuse:hatokuse >------------------------
+[INFO] Building HaToKuSe - Hata Tolere Kuyruk Servisi 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ hatokuse ---
+[INFO] skip non existing resourceDirectory C:\Users\yasimert\Desktop\da­²t²kmesajkay²t\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ hatokuse ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 29 source files with javac [debug target 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/yasimert/Desktop/da­²t²kmesajkay²t/src/main/java/com/hatokuse/gui/ManagementPanel.java:[62,13] reference to Timer is ambiguous
+  both class java.util.Timer in java.util and class javax.swing.Timer in javax.swing match
+[ERROR] /C:/Users/yasimert/Desktop/da­²t²kmesajkay²t/src/main/java/com/hatokuse/gui/ManagementPanel.java:[710,28] reference to Timer is ambiguous
+  both class java.util.Timer in java.util and class javax.swing.Timer in javax.swing match
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.708 s
+[INFO] Finished at: 2026-01-12T21:55:28+03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project hatokuse: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/yasimert/Desktop/da­²t²kmesajkay²t/src/main/java/com/hatokuse/gui/ManagementPanel.java:[62,13] reference to Timer is ambiguous
+[ERROR]   both class java.util.Timer in java.util and class javax.swing.Timer in javax.swing match
+[ERROR] /C:/Users/yasimert/Desktop/da­²t²kmesajkay²t/src/main/java/com/hatokuse/gui/ManagementPanel.java:[710,28] reference to Timer is ambiguous
+[ERROR]   both class java.util.Timer in java.util and class javax.swing.Timer in javax.swing match
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

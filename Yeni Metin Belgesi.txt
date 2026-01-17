@@ -1,0 +1,27 @@
+
+1. maven çalıştır
+
+mvn clean package -DskipTests
+
+
+2. lider server çalıştır.
+java -cp target/hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar com.hatokuse.leader.LeaderServer
+
+
+1. kullanıcı (yeni terminal)
+java -cp target/hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar com.hatokuse.member.MemberServer --id member1 --port 5002
+
+
+
+
+HATA ALINIRSA 
+
+cd 'c:\Users\yasimert\Desktop\dağıtıkmesajkayıt' 
+taskkill /IM java.exe /F
+
+
+GUI üzerinden
+
+mvn package -DskipTests -q; if ($?) { echo "Derleme basarili" }
+
+java -cp 'c:\Users\yasimert\Desktop\dağıtıkmesajkayıt\target\hatokuse-1.0-SNAPSHOT-jar-with-dependencies.jar' com.hatokuse.gui.SystemManagerGUI
